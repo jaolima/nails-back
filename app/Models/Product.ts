@@ -3,6 +3,12 @@ import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
 import Category from './Category'
 
 export default class Product extends BaseModel {
+  @column.dateTime({ autoCreate: true })
+  public createdAt: DateTime
+
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  public updatedAt: DateTime
+  
   @column({ isPrimary: true })
   public id: number
 
@@ -32,12 +38,6 @@ export default class Product extends BaseModel {
 
   @column()
   public price: number
-
-  @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
-
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
 
   @hasOne(() => Category)
   public category: HasOne<typeof Category>
