@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import SubCategory from './SubCategory'
 
 export default class Category extends BaseModel {
@@ -15,6 +15,6 @@ export default class Category extends BaseModel {
   @column()
   public name: string
 
-  @hasOne(() => SubCategory)
-  public subCategory: HasOne<typeof SubCategory>
+  @hasMany(() => SubCategory)
+  public subCategory: HasMany<typeof SubCategory>
 }

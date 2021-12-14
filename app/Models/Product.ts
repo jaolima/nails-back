@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import Category from './Category'
 
 export default class Product extends BaseModel {
@@ -39,6 +39,6 @@ export default class Product extends BaseModel {
   @column()
   public price: number
 
-  @hasOne(() => Category)
-  public category: HasOne<typeof Category>
+  @hasMany(() => Category)
+  public category: HasMany<typeof Category>
 }

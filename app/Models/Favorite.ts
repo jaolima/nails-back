@@ -9,6 +9,9 @@ export default class Favorite extends BaseModel {
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
+  
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  public updatedAt: DateTime;
 
   @hasMany(() => Product)
   public products: HasMany<typeof Product>;
@@ -16,6 +19,5 @@ export default class Favorite extends BaseModel {
   @hasMany(() => User)
   public users: HasMany<typeof User>;
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime;
+ 
 }

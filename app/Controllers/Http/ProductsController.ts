@@ -1,12 +1,11 @@
 "use strict"
 
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-
-// const Products = use('App/Models/Product')
+import Products from 'App/Models/Product'
 export default class ProductsController {
   public async index({}: HttpContextContract) {
-    // const products = await Products.all()
-    // return products;
+    const products = await Products.all()
+    return products;
   }
 
   public async create({}: HttpContextContract) {}
