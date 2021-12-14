@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import Profile from './Profile'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -22,8 +23,8 @@ export default class User extends BaseModel {
   @column()
   public status: Boolean
 
-  @column()
-  public idProfile: number
+  @hasOne(() => Profile)
+  public profile: HasOne<typeof Profile>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
