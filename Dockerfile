@@ -1,7 +1,9 @@
 FROM node:latest
 
+COPY . .
 RUN npm i && npm run build
 
-COPY build .
+WORKDIR ./build
+RUN npm i
 
-RUN ["npm start"]
+CMD "npm" "run" "start"

@@ -9,6 +9,7 @@ export default class Products extends BaseSchema {
       table.timestamps(true);
       table.string("name").notNullable();
       table.string("color").notNullable();
+      table.string("alias_color").notNullable();
       table.string("description").notNullable();
       table.integer("qtd").notNullable();
       table.string("type").notNullable();

@@ -11,22 +11,25 @@ export default class Product extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime  
-
+  
   @column()
   public name: string
-
+  
   @column()
   public color: string
-
+  
+  @column()
+  public alias_color: string
+  
   @column()
   public description: string
-
+  
   @column()
   public qtd: number
-
+  
   @column()
   public type: string
-
+  
   @column()
   public size: string
 
@@ -35,7 +38,7 @@ export default class Product extends BaseModel {
 
   @column()
   public uriImage: string
-
+  
   @column()
   public price: number
 
