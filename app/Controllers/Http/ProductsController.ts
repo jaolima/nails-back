@@ -40,13 +40,13 @@ export default class ProductsController {
   * 
   * 
   *       - name: color
-  *         description: Name of product
+  *         description: Color of product
   *         in: query
   *         required: false
   *         type: string 
   *  
   *       - name: alias_color
-  *         description: Name of product
+  *         description: Color alias of product
   *         in: query
   *         required: false
   *         type: string 
@@ -54,14 +54,14 @@ export default class ProductsController {
   * 
   
   *       - name: description
-  *         description: Name of product
+  *         description: Description of product
   *         in: query
   *         required: false
   *         type: string 
   * 
   *  
   *       - name: qtd
-  *         description: Name of product
+  *         description: Quantitu of product
   *         in: query
   *         required: false
   *         type: string 
@@ -69,38 +69,27 @@ export default class ProductsController {
   * 
   
   *       - name: type
-  *         description: Name of product
+  *         description: Type of product
   *         in: query
   *         required: false
   *         type: string 
   * 
-  *  
-  *       - name: type
-  *         description: Name of product
-  *         in: query
-  *         required: false
-  *         type: string 
-  * 
-  * 
-  
   *       - name: size
-  *         description: Name of product
+  *         description: Size of product
   *         in: query
   *         required: false
   *         type: string 
   * 
   * 
-  
   *       - name: barcode
-  *         description: Name of product
+  *         description: barcode of product
   *         in: query
   *         required: false
   *         type: string 
   * 
   * 
-  
   *       - name: price
-  *         description: Name of product
+  *         description: Price of product
   *         in: query
   *         required: false
   *         type: string 
@@ -108,9 +97,9 @@ export default class ProductsController {
   * 
   *     responses:
   *       200:
-  *         description: Send hello message
+  *         description: Return a product created
   *         example:
-  *           message: Hello Guess
+  *           message: { info product}
   */
     const data = request.only(["price", "barcode", "size", "type", "qtd", "description", "color", "alias_color", "name"]);
     const product = await Product.create(data);
