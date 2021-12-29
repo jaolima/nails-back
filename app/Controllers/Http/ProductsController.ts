@@ -22,7 +22,7 @@ export default class ProductsController {
     return products;
   }
 
-  public async create({request}: HttpContextContract) {
+  public async create({ request }: HttpContextContract) {
     /**
   * @swagger
   * /products:
@@ -101,9 +101,21 @@ export default class ProductsController {
   *         example:
   *           message: { info product}
   */
-    const data = request.only(["price", "barcode", "size", "type", "qtd", "description", "color", "alias_color", "name"]);
-    const product = await Product.create(data);
+    const product = new Product();
+    product.price = request.input("price");
+    product.barcode = request.input("barcode");
+    product.size = request.input("size");
+    product.type = request.input("type");
+    product.qtd = request.input("qtd");
+    product.description = request.input("description");
+    product.color = request.input("color");
+    product.alias_color = request.input("alias_color");
+    product.name = request.input("name");
     return product;
+  }
+
+  public async topProducts({}: HttpContextContract) {
+  
   }
 
   public async store({}: HttpContextContract) {}

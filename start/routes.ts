@@ -18,16 +18,18 @@
 |
 */
 
-import Route from '@ioc:Adonis/Core/Route'
+import Route from "@ioc:Adonis/Core/Route";
 
-Route.get('/', async () => {
-  return { hello: 'world' }
-})
+Route.get("/", async () => {
+  return { hello: "world" };
+});
 
 Route.group(() => {
-  Route.resource('products', 'ProductsController')
-  Route.resource('categories', 'CategoriesController')
-  Route.resource('users', 'UserController')
-  Route.resource('favorites', 'FavoritesController')
-  Route.resource('sales', 'SalesController')
-})
+  Route.resource("products", "ProductsController");
+  Route.resource("categories", "CategoriesController");
+  Route.resource("subcategories", "SubCategoriesController");
+  Route.resource("users", "UserController");
+  Route.resource("favorites", "FavoritesController");
+  Route.resource("sales", "SalesController");
+  Route.get("menu", "CategoriesController.menu");
+});

@@ -1,47 +1,50 @@
-import { DateTime } from 'luxon'
-import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
-import Category from './Category'
+import { DateTime } from "luxon";
+import { BaseModel, column, HasMany, hasMany } from "@ioc:Adonis/Lucid/Orm";
+import Category from "./Category";
 
 export default class Product extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  public id: number;
 
   @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  public createdAt: DateTime;
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime  
-  
-  @column()
-  public name: string
-  
-  @column()
-  public color: string
-  
-  @column()
-  public alias_color: string
-  
-  @column()
-  public description: string
-  
-  @column()
-  public qtd: number
-  
-  @column()
-  public type: string
-  
-  @column()
-  public size: string
+  public updatedAt: DateTime;
 
   @column()
-  public barcode: string
+  public name: string;
 
   @column()
-  public uriImage: string
-  
+  public color: string;
+
   @column()
-  public price: number
+  public alias_color: string;
+
+  @column()
+  public description: string;
+
+  @column()
+  public qtd: number;
+
+  @column()
+  public type: string;
+
+  @column()
+  public size: string;
+
+  @column()
+  public barcode: string;
+
+  @column()
+  public uriImage: string;
+
+  @column()
+  public price: number;
 
   @hasMany(() => Category)
-  public category: HasMany<typeof Category>
+  public category: HasMany<typeof Category>;
+  
 }
+
+

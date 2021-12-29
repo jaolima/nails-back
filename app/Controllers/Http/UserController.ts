@@ -74,7 +74,11 @@ class UserController {
     user.uriImage = request.input("uriImage");
     user.status = true;
     user.save();
-    return user;
+    if(user.name){
+      return 'User created'
+    }else{
+      
+    }
   }
 
   public async show({ params }: HttpContextContract) {

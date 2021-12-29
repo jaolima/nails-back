@@ -8,7 +8,7 @@ export default class Users extends BaseSchema {
       table.increments("id");
       table.timestamps(true);
       table.string("name").notNullable();
-      table.string("email").notNullable();
+      table.string("email").notNullable().unique();
       table.string("password").notNullable();
       table.string("uri_image").notNullable();
       table.boolean("status").notNullable();
