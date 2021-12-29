@@ -7,7 +7,7 @@ export default class SubCategories extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments("id");
       table.timestamps(true);
-      table.string("name").notNullable();
+      table.string("name").notNullable().unique();
       table
         .integer("id_sub_sub_category")
         .unsigned()

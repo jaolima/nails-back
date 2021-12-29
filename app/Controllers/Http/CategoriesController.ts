@@ -1,20 +1,22 @@
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
+import Category from "App/Models/Category";
+import Categories from "Database/migrations/0000000000006_categories";
 
 export default class CategoriesController {
-       /**
-  * @swagger
-  * /categories:
-  *   get:
-  *     tags:
-  *       - Categorias
-  *     summary: Listagem de Categorias
-  *     responses:
-  *       200:
-  *         description: Retorno de Categorias
-  *         example:
-  *           message: [{ lista com Categorias }]
-  */
-  public async index({}: HttpContextContract) {
+  /**
+   * @swagger
+   * /menu:
+   *   get:
+   *     tags:
+   *       - Categorias
+   *     summary: Listagem de Categorias
+   *     responses:
+   *       200:
+   *         description: Retorno de Categorias
+   *         example:
+   *           message: [{ lista com Categorias }]
+   */
+  public async menu({}: HttpContextContract) {
     //  const categories = await Category.all()
     const categories = [
       {
@@ -225,9 +227,61 @@ export default class CategoriesController {
     return categories;
   }
 
-  public async create({}: HttpContextContract) {}
+  public async store({ request }: HttpContextContract) {
+    /**
+  * @swagger
+  * /categories:
+  *   post:
+  *     tags:
+  *       - Categorias
+  *     summary: Criação de categoria
+  *     parameters:
+  
+  *       - name: name
+  *         description: Name of Category
+  *         in: query
+  *         required: false
+  *         type: string 
+  * 
+  * 
+  *     responses:
+  *       200:
+  *         description: Return a category created
+  *         example:
+  *           message: { info category}
+  */
+    const category = new Category();
+    category.name = request.input("name");
+    category.save();
+    return category;
+  }
 
-  public async store({}: HttpContextContract) {}
+  public async index({}: HttpContextContract) {
+    /**
+  * @swagger
+  * /categories:
+  *   post:
+  *     tags:
+  *       - Categorias
+  *     summary: Criação de categoria
+  *     parameters:
+  
+  *       - name: name
+  *         description: Name of Category
+  *         in: query
+  *         required: false
+  *         type: string 
+  * 
+  * 
+  *     responses:
+  *       200:
+  *         description: Return a category created
+  *         example:
+  *           message: { info category}
+  */
+    var categories = Category.all();
+    return categories;
+  }
 
   public async show({}: HttpContextContract) {}
 

@@ -3,6 +3,7 @@
 import User from "App/Models/User";
 
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
+import Hash from "@ioc:Adonis/Core/Hash";
 
 class UserController {
   public async index({}: HttpContextContract) {
@@ -39,20 +40,20 @@ class UserController {
   *         type: string 
   * 
   *       - name: email
-  *         description: Name of the user
+  *         description: Email
   *         in: query
   *         required: false
   *         type: string 
   * 
   *       - name: password
-  *         description: Name of the user
+  *         description: Password
   *         in: query
   *         required: false
   *         type: string 
  
   *  
   *       - name: uriImage
-  *         description: Name of the user
+  *         description: Image URI
   *         in: query
   *         required: false
   *         type: string 
@@ -60,20 +61,24 @@ class UserController {
   * 
   *     responses:
   *       200:
-  *         description: Send hello message
+  *         description: Send a user return
   *         example:
-  *           message: Hello Guess
+  *           message: {user info}
   */
-    // const data = request.only(["name", "email", "password", "uriImage"]);
     const user = new User();
     // return user;
+    const hashedPassword = await Hash.make(request.input("password"));
     user.name = request.input("name");
     user.email = request.input("email");
-    user.password = request.input("password");
+    user.password = hashedPassword;
     user.uriImage = request.input("uriImage");
     user.status = true;
     user.save();
-    return user;
+    if(user.name){
+      return 'User created'
+    }else{
+      
+    }
   }
 
   public async show({ params }: HttpContextContract) {
