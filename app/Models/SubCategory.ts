@@ -1,7 +1,9 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
+import SubSubCategory from './SubSubCategory'
 
 export default class SubCategory extends BaseModel {
+
   @column({ isPrimary: true })
   public id: number
 
@@ -14,6 +16,7 @@ export default class SubCategory extends BaseModel {
   @column()
   public name: string
 
-  @hasMany(() => SubCategory)
-  public subCategory: HasMany<typeof SubCategory>
+  @hasMany(() => SubSubCategory)
+  public subSubCategory: HasMany<typeof SubSubCategory>
+
 }

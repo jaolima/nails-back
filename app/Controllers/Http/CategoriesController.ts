@@ -242,6 +242,12 @@ export default class CategoriesController {
   *         in: query
   *         required: false
   *         type: string 
+  *   
+  *       - name: idSubCategory
+  *         description: id of Sub Category
+  *         in: query
+  *         required: false
+  *         type: string 
   * 
   * 
   *     responses:
@@ -252,6 +258,7 @@ export default class CategoriesController {
   */
     const category = new Category();
     category.name = request.input("name");
+    category.subCategory = request.input("idSubCategory") || null;
     category.save();
     return category;
   }

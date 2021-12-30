@@ -20,9 +20,39 @@ export default class SubCategoriesController {
     return subCategories;
   }
 
-  public async create({}: HttpContextContract) {}
-
-  public async store({}: HttpContextContract) {}
+  public async store({ request }: HttpContextContract) {
+    /**
+     * @swagger
+     * /subcategories:
+     *   post:
+     *     tags:
+     *       - Sub Categorias
+     *     summary: Criação de subcategoria
+     *     parameters:
+     *       - name: name
+     *         description: Name of SubCategory
+     *         in: query
+     *         required: false
+     *         type: string
+     *
+     *       - name: id
+     *         description: id Sub Sub Category
+     *         in: query
+     *         required: false
+     *         type: string
+     *
+     *     responses:
+     *       200:
+     *         description: Return a Sub Category created
+     *         example:
+     *           message: { info category}
+     */
+    const subCategory = new SubCategory();
+    subCategory.name = request.input("name");
+    subCategory.subSubCategory = request.input("id");
+    subCategory.save();
+    return subCategory;
+  }
 
   public async show({}: HttpContextContract) {}
 

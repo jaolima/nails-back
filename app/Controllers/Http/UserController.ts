@@ -12,13 +12,13 @@ class UserController {
      * /users:
      *   get:
      *     tags:
-     *       - Usuarios
-     *     summary: Listagem de Usuarios
+     *       - User
+     *     summary: Listagem de User
      *     responses:
      *       200:
-     *         description: Retorno de Usuarios
+     *         description: Retorno de User
      *         example:
-     *           message: [{ lista com Usuarios }]
+     *           message: [{ lista com User }]
      */
     const properties = User.all();
     return properties;
@@ -74,10 +74,8 @@ class UserController {
     user.uriImage = request.input("uriImage");
     user.status = true;
     user.save();
-    if(user.name){
-      return 'User created'
-    }else{
-      
+    if (user.name) {
+      return "User created";
     }
   }
 
@@ -87,13 +85,13 @@ class UserController {
      * /users/<id>:
      *   get:
      *     tags:
-     *       - Usuarios
-     *     summary: Listagem de Usuario
+     *       - User
+     *     summary: Listagem de User
      *     responses:
      *       200:
-     *         description: Retorno de Usuario
+     *         description: Retorno de User
      *         example:
-     *           message: [{ lista com Usuario }]
+     *           message: [{ lista com User }]
      */
     const users = await User.findOrFail(params.id);
     return users;
