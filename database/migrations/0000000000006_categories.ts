@@ -6,12 +6,10 @@ export default class Categories extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments("id");
+      table.integer("id_sub");
+      table.integer("id_sub_sub");
       table.timestamps(true);
       table.string("name").notNullable().unique();
-      table
-        .integer("id_sub_category")
-        .unsigned()
-        .references("sub_categories.id");
     });
   }
 

@@ -1,8 +1,13 @@
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import SubSubCategory from "App/Models/SubSubCategory";
 
+import Database from "@ioc:Adonis/Lucid/Database";
 export default class SubSubCategoriesController {
-  public async index({}: HttpContextContract) {}
+  public async index({}: HttpContextContract) {
+
+    const subSubCategories = Database.from("categories").select("*").whereNotNull("id_sub_sub").whereNotNull("id_sub");
+    return subSubCategories;
+  }
 
   public async create({}: HttpContextContract) {}
 

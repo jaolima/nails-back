@@ -27,7 +27,8 @@ Route.get("/", async () => {
 Route.group(() => {
   Route.resource("products", "ProductsController");
   Route.resource("categories", "CategoriesController");
-  Route.resource("subcategories", "SubCategoriesController");
+  Route.resource("subCategories", "SubCategoriesController");
+  Route.resource("subSubCategories", "SubSubCategoriesController");
   Route.resource("users", "UserController");
   Route.resource("favorites", "FavoritesController");
   Route.resource("sales", "SalesController");

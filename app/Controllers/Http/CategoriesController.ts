@@ -1,6 +1,7 @@
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Category from "App/Models/Category";
 import Categories from "Database/migrations/0000000000006_categories";
+import Database from "@ioc:Adonis/Lucid/Database";
 
 export default class CategoriesController {
   /**
@@ -286,7 +287,8 @@ export default class CategoriesController {
   *         example:
   *           message: { info category}
   */
-    var categories = Category.all();
+    // Category.all();
+    var categories = Database.from("categories").select("*").whereNull("id_sub").whereNull("id_sub_sub");
     return categories;
   }
 
