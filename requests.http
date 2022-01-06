@@ -27,12 +27,21 @@ Content-Type: {{contentType}}
 GET http://{{host}}/users HTTP/1.1
 
 ### POST /users
-POST http://{{host}}/products HTTP/1.1
+POST http://{{host}}/users HTTP/1.1
 Content-Type: {{contentType}}
 
 {
     "name": "John",
-    "email": "michael@michael.com",
-    "password": "1234567",
+    "email": "michaelJackson@michael.com",
+    "password": "12345678",
     "uriImage": "teste.com"
+}
+
+### POST /sessions
+POST http://{{host}}/sessions HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+    "email": "michaelJackson@michael.com",
+    "password": "12345678"
 }

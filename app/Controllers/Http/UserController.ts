@@ -66,7 +66,6 @@ class UserController {
   *           message: {user info}
   */
     const user = new User();
-    // return user;
     const hashedPassword = await Hash.make(request.input("password"));
     user.name = request.input("name");
     user.email = request.input("email");

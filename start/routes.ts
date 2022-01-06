@@ -33,4 +33,9 @@ Route.group(() => {
   Route.resource("favorites", "FavoritesController");
   Route.resource("sales", "SalesController");
   Route.get("menu", "CategoriesController.menu");
+  Route.post('sessions', 'SessionController.create')
 });
+
+// Route.group(() => {
+  
+// }).middleware('auth')
