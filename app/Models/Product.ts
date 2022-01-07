@@ -43,12 +43,10 @@ export default class Product extends BaseModel {
   public price: number;
 
  @column()
-  public top_products: Boolean;
+  public top_products: boolean;
  
   @column()
   public discount: number;
-
-  
 
 
   @hasMany(() => Category)

@@ -21,6 +21,23 @@ export default class ProductsController {
     const products = await Products.all();
     return products;
   }
+  public async topProducts({}: HttpContextContract) {
+    /**
+     * @swagger
+     * /:
+     *   get:
+     *     tags:
+     *       - Produtos
+     *     summary: Listagem de Produtos
+     *     responses:
+     *       200:
+     *         description: Retorno de produtos
+     *         example:
+     *           message: [{ lista com produtos }]
+     */
+    const products = await Products.query().where('top_products', 'true');
+    return products;
+  }
 
   public async create({ request }: HttpContextContract) {
     /**
@@ -114,10 +131,6 @@ export default class ProductsController {
     product.top_products = request.input("top_products");
     product.discount = request.input("discount");
     return product;
-  }
-
-  public async topProducts({}: HttpContextContract) {
-  
   }
 
   public async store({}: HttpContextContract) {}
