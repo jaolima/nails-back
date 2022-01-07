@@ -111,6 +111,8 @@ export default class ProductsController {
     product.color = request.input("color");
     product.alias_color = request.input("alias_color");
     product.name = request.input("name");
+    product.top_products = request.input("top_products");
+    product.discount = request.input("discount");
     return product;
   }
 

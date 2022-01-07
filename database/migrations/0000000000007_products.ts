@@ -17,6 +17,8 @@ export default class Products extends BaseSchema {
       table.string("barcode").notNullable();
       table.string("uri_image").notNullable();
       table.double("price").notNullable();
+      table.boolean("top_products");
+      table.integer("discount");
       table.integer("id_category").unsigned().references("categories.id");
     });
   }
