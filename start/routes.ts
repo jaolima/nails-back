@@ -26,6 +26,7 @@ Route.get("/", async () => {
 
 Route.group(() => {
   Route.get("topproducts", "ProductsController.topProducts");
+  Route.get("discount", "ProductsController.discount");
   Route.resource("products", "ProductsController");
   Route.resource("categories", "CategoriesController");
   Route.resource("subCategories", "SubCategoriesController");

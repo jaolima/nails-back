@@ -39,6 +39,11 @@ export default class ProductsController {
     return products;
   }
 
+  public async discount({}: HttpContextContract) { 
+    const discount = await Products.query().whereNotNull('discount');
+    return discount;
+  }
+
   public async create({ request }: HttpContextContract) {
     /**
   * @swagger
