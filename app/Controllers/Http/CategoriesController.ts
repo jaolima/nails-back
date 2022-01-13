@@ -1,6 +1,6 @@
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Category from "App/Models/Category";
-import Categories from "Database/migrations/0000000000006_categories";
+// import Categories from "Database/migrations/0000000000006_categories";
 import Database from "@ioc:Adonis/Lucid/Database";
 
 export default class CategoriesController {

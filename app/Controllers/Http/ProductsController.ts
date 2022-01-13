@@ -45,6 +45,7 @@ export default class ProductsController {
   }
 
   public async store({ request }: HttpContextContract) {
+ 
     /**
   * @swagger
   * /products:
