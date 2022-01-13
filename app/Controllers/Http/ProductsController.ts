@@ -35,16 +35,16 @@ export default class ProductsController {
      *         example:
      *           message: [{ lista com produtos }]
      */
-    const products = await Products.query().where('top_products', 'true');
+    const products = await Products.query().where("top_products", "true");
     return products;
   }
 
-  public async discount({}: HttpContextContract) { 
-    const discount = await Products.query().whereNotNull('discount');
+  public async discount({}: HttpContextContract) {
+    const discount = await Products.query().whereNotNull("discount");
     return discount;
   }
 
-  public async create({ request }: HttpContextContract) {
+  public async store({ request }: HttpContextContract) {
     /**
   * @swagger
   * /products:
@@ -123,22 +123,33 @@ export default class ProductsController {
   *         example:
   *           message: { info product}
   */
-    const product = new Product();
-    product.price = request.input("price");
-    product.barcode = request.input("barcode");
-    product.size = request.input("size");
-    product.type = request.input("type");
-    product.qtd = request.input("qtd");
-    product.description = request.input("description");
-    product.color = request.input("color");
-    product.alias_color = request.input("alias_color");
-    product.name = request.input("name");
-    product.top_products = request.input("top_products");
-    product.discount = request.input("discount");
-    return product;
+
+    try {
+      const product = new Product();
+      product.price = request.input("price");
+      product.barcode = request.input("barcode");
+      product.size = request.input("size");
+      product.type = request.input("type");
+      product.qtd = request.input("qtd");
+      product.description = request.input("description");
+      product.color = request.input("color");
+      product.alias_color = request.input("alias_color");
+      product.name = request.input("name");
+      product.top_products = request.input("top_products");
+      product.discount = request.input("discount");
+      product.uriImage = request.input("uri_image");
+      product.save();
+
+      if (product.name) {
+        return "Product created";
+      } else {
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
   }
 
-  public async store({}: HttpContextContract) {}
+  public async create({}: HttpContextContract) {}
 
   public async show({}: HttpContextContract) {}
 
