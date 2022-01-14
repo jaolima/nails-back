@@ -1,5 +1,6 @@
 "use strict";
 
+import Application from "@ioc:Adonis/Core/Application";
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Product from "App/Models/Product";
 import Products from "App/Models/Product";
@@ -45,7 +46,6 @@ export default class ProductsController {
   }
 
   public async store({ request }: HttpContextContract) {
- 
     /**
   * @swagger
   * /products:
@@ -139,11 +139,19 @@ export default class ProductsController {
       product.top_products = request.input("top_products");
       product.discount = request.input("discount");
       product.uriImage = request.input("uri_image");
-      const image = request.file("image");
-  
-      // product.image = request.file("image");
+      const image = request.file("image", { extnames: ["jpg", "png", "gif"] });
+      if (image) {
+        image.move(Application.tmpPath("uploads"));
+      }
       product.save();
-
+      if (!image) {
+        return
+      }
+      
+      if (!image.isValid) {
+        return image.errors
+      }
+      
       if (product.name) {
         return "Product created";
       } else {
