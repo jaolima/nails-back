@@ -139,6 +139,9 @@ export default class ProductsController {
       product.top_products = request.input("top_products");
       product.discount = request.input("discount");
       product.uriImage = request.input("uri_image");
+      const image = request.file("image");
+  
+      // product.image = request.file("image");
       product.save();
 
       if (product.name) {
