@@ -4,8 +4,8 @@ import Application from "@ioc:Adonis/Core/Application";
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Product from "App/Models/Product";
 import Products from "App/Models/Product";
-import { v4 as uuidv4 } from "uuid";
-
+// import { v4 as uuidv4 } from "uuid";
+const { v4: uuidv4 } = require('uuid');
 export default class ProductsController {
   public async index({}: HttpContextContract) {
     /**
