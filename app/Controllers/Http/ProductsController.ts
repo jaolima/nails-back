@@ -4,6 +4,7 @@ import Application from "@ioc:Adonis/Core/Application";
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Product from "App/Models/Product";
 import Products from "App/Models/Product";
+import env from "env";
 import { v4 as uuidv4 } from "uuid";
 
 export default class ProductsController {
@@ -144,7 +145,7 @@ export default class ProductsController {
       const image = request.file("image", { extnames: ["jpg", "png", "gif"] });
       if (image) {
         image.fileName = uuidv4();
-        product.uriImage = Application.tmpPath("uploads") + image.fileName;
+        product.uriImage = env.APP_URL + image.fileName + "." +  image.type;
         image.move(Application.tmpPath("uploads"));
       }
       product.save();
