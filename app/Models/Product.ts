@@ -37,7 +37,7 @@ export default class Product extends BaseModel {
   public barcode: string;
 
   @column()
-  public uriImage: string;
+  public uri_image: string;
 
   @column()
   public price: number;
