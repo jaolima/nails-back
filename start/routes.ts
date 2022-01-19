@@ -17,7 +17,6 @@
 | import './routes/customer'
 |
 */
-
 import Route from "@ioc:Adonis/Core/Route";
 
 Route.get("/", async () => {
@@ -35,9 +34,11 @@ Route.group(() => {
   Route.resource("favorites", "FavoritesController");
   Route.resource("sales", "SalesController");
   Route.get("menu", "CategoriesController.menu");
-  Route.post('sessions', 'SessionController.create')
+  Route.post("sessions", "SessionController.create");
+ 
+  
 });
 
 // Route.group(() => {
-  
+
 // }).middleware('auth')

@@ -4,9 +4,9 @@ import Application from "@ioc:Adonis/Core/Application";
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Product from "App/Models/Product";
 import Products from "App/Models/Product";
-import env from "env";
-import { v4 as uuidv4 } from "uuid";
-
+import Env from "@ioc:Adonis/Core/Env";
+const { v4: uuidv4 } = require("uuid");
+// const Helpers = use('Helpers')
 export default class ProductsController {
   public async index({}: HttpContextContract) {
     /**
@@ -143,11 +143,21 @@ export default class ProductsController {
       product.discount = request.input("discount");
 
       const image = request.file("image", { extnames: ["jpg", "png", "gif"] });
+
       if (image) {
+        
         image.fileName = uuidv4();
-        product.uriImage = env.APP_URL + image.fileName + "." +  image.type;
-        image.move(Application.tmpPath("uploads"));
+        product.uri_image =
+          Env.get("APP_URL") +
+          "uploads/" +
+          image.fileName +
+          "." +
+          image.extname;
+        image.move(Application.tmpPath("uploads"), {
+          name: image.fileName + "." + image.extname,
+        });
       }
+
       product.save();
       if (!image) {
         return;
