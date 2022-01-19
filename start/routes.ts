@@ -17,10 +17,7 @@
 | import './routes/customer'
 |
 */
-import { extname } from "path";
 import Route from "@ioc:Adonis/Core/Route";
-import Drive from "@ioc:Adonis/Core/Drive";
-import Application from "@ioc:Adonis/Core/Application";
 
 Route.get("/", async () => {
   return { hello: "world" };
