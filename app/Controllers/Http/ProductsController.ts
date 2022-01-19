@@ -133,7 +133,7 @@ export default class ProductsController {
       product.price = request.input("price").required();
       product.barcode = request.input("barcode").required();
       product.size = request.input("size").required();
-      product.type = request.input("type").required();
+      // product.type = request.input("type").required();
       product.qtd = request.input("qtd").required();
       product.description = request.input("description").required();
       product.color = request.input("color").required();
