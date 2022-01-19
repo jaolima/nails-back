@@ -259,7 +259,7 @@ export default class CategoriesController {
   */
     const category = new Category();
     category.name = request.input("name");
-    category.subCategory = request.input("idSubCategory") || null;
+    category.subCategory = request.input("idSubCategory") || [];
     category.save();
     return category;
   }
