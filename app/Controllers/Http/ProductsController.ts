@@ -130,15 +130,15 @@ export default class ProductsController {
 
     try {
       const product = new Product();
-      product.price = request.input("price");
-      product.barcode = request.input("barcode");
-      product.size = request.input("size");
-      product.type = request.input("type");
-      product.qtd = request.input("qtd");
-      product.description = request.input("description");
-      product.color = request.input("color");
+      product.price = request.input("price").required();
+      product.barcode = request.input("barcode").required();
+      product.size = request.input("size").required();
+      product.type = request.input("type").required();
+      product.qtd = request.input("qtd").required();
+      product.description = request.input("description").required();
+      product.color = request.input("color").required();
       product.alias_color = request.input("alias_color");
-      product.name = request.input("name");
+      product.name = request.input("name").required();
       product.top_products = request.input("top_products");
       product.discount = request.input("discount");
 
