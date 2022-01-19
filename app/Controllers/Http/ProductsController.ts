@@ -145,10 +145,10 @@ export default class ProductsController {
       const image = request.file("image", { extnames: ["jpg", "png", "gif"] });
 
       if (image) {
-        image.move(Application.tmpPath("uploads"));
         // var fileExtension = image.fileName.split('.').pop();
-        // image.fileName = uuidv4();
-        product.uri_image = Env.get('APP_URL') + image.fileName + "." +  image.extname;
+        image.fileName = uuidv4();
+        product.uri_image = Env.get('APP_URL') + 'uploads/' + image.fileName + "." +  image.extname;
+        image.move(Application.tmpPath("uploads"),{ name: image.fileName + "." +  image.extname });
       }
       product.save();
       if (!image) {

@@ -17,9 +17,10 @@
 | import './routes/customer'
 |
 */
-import { extname } from 'path'
-import Route from '@ioc:Adonis/Core/Route'
-import Drive from '@ioc:Adonis/Core/Drive'
+import { extname } from "path";
+import Route from "@ioc:Adonis/Core/Route";
+import Drive from "@ioc:Adonis/Core/Drive";
+import Application from "@ioc:Adonis/Core/Application";
 
 Route.get("/", async () => {
   return { hello: "world" };
@@ -36,19 +37,11 @@ Route.group(() => {
   Route.resource("favorites", "FavoritesController");
   Route.resource("sales", "SalesController");
   Route.get("menu", "CategoriesController.menu");
-  Route.post('sessions', 'SessionController.create')
-  Route.get('/uploads/*', async ({ request, response }) => {
-    const location = request.param('*').join('/')
+  Route.post("sessions", "SessionController.create");
+ 
   
-    const { size } = await Drive.getStats(location)
-  
-    response.type(extname(location))
-    response.header('content-length', size)
-  
-    return response.stream(await Drive.getStream(location))
-  })
 });
 
 // Route.group(() => {
-  
+
 // }).middleware('auth')
