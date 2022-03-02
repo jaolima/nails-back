@@ -48,7 +48,7 @@ export default class ProductsController {
     return discount;
   }
 
-  public async store({ request }: HttpContextContract) {
+  public async store({ request, response }: HttpContextContract) {
     /**
   * @swagger
   * /products:
@@ -164,7 +164,7 @@ export default class ProductsController {
       }
 
       if (!image.isValid) {
-        return image.errors;
+        return response.status(401).json(image.errors)
       }
 
       if (product.name) {
