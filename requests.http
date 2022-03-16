@@ -45,3 +45,21 @@ Content-Type: {{contentType}}
     "email": "michaelJackson@michael.com",
     "password": "12345678"
 }
+
+
+### products by category
+GET http://{{host}}/products/1 HTTP/1.1
+Content-Type: {{contentType}}
+
+
+### products by category
+GET http://{{host}}/categories HTTP/1.1
+Content-Type: {{contentType}}
+
+### products by subCategory
+GET http://{{host}}/subCategories HTTP/1.1
+Content-Type: {{contentType}}
+
+### products by subSubCategory
+GET http://{{host}}/subCategories HTTP/1.1
+Content-Type: {{contentType}}

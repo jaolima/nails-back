@@ -24,6 +24,7 @@ Route.get("/", async () => {
 });
 
 Route.group(() => {
+  Route.get("products/:id_category", "ProductsController.productsByCategory");
   Route.get("topproducts", "ProductsController.topProducts");
   Route.get("discount", "ProductsController.discount");
   Route.resource("products", "ProductsController");

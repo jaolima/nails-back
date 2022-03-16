@@ -25,7 +25,12 @@ export default class CategoriesController {
         megaMenu: true,
         megaMenuType: "small",
         type: "sub",
+
         children: [
+          { path: "/", title: "KITS + BUNDLES", type: "link", arrow: false },
+          { path: "/", title: "NEW", type: "link", arrow: false },
+          { path: "/", title: "COLOR CHART", type: "link", arrow: false },
+          { path: "/", title: "SALE", type: "link", arrow: false },
           {
             title: "DIP POWDER",
             type: "sub",
@@ -220,10 +225,6 @@ export default class CategoriesController {
           },
         ],
       },
-      { path: "/", title: "KITS + BUNDLES", type: "link", arrow: false },
-      { path: "/", title: "NEW", type: "link", arrow: false },
-      { path: "/", title: "COLOR CHART", type: "link", arrow: false },
-      { path: "/", title: "SALE", type: "link", arrow: false },
     ];
     return categories;
   }
@@ -288,7 +289,10 @@ export default class CategoriesController {
   *           message: { info category}
   */
     // Category.all();
-    var categories = Database.from("categories").select("*").whereNull("id_sub").whereNull("id_sub_sub");
+    var categories = Database.from("categories")
+      .select("*")
+      .whereNull("id_sub")
+      .whereNull("id_sub_sub");
     return categories;
   }
 
