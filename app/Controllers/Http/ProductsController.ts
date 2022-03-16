@@ -25,6 +25,7 @@ export default class ProductsController {
     const products = await Products.all();
     return products;
   }
+
   public async topProducts({}: HttpContextContract) {
     /**
      * @swagger
@@ -40,6 +41,23 @@ export default class ProductsController {
      *           message: [{ lista com produtos }]
      */
     const products = await Products.query().where("top_products", "true");
+    return products;
+  }
+  public async productsByCategory({ params }: HttpContextContract) {
+    /**
+     * @swagger
+     * /products/<id_category>:
+     *   get:
+     *     tags:
+     *       - Produtos
+     *     summary: Listagem de Produtos por categoria
+     *     responses:
+     *       200:
+     *         description: Retorno de produtos
+     *         example:
+     *           message: [{ lista com produtos }]
+     */
+    const products = await Products.query().where("id_category", params.id_category);
     return products;
   }
 
@@ -145,7 +163,6 @@ export default class ProductsController {
       const image = request.file("image", { extnames: ["jpg", "png", "gif"] });
 
       if (image) {
-        
         image.fileName = uuidv4();
         product.uri_image =
           Env.get("APP_URL") +
@@ -164,7 +181,7 @@ export default class ProductsController {
       }
 
       if (!image.isValid) {
-        return response.status(401).json(image.errors)
+        return response.status(401).json(image.errors);
       }
 
       if (product.name) {
