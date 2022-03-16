@@ -157,8 +157,8 @@ export default class ProductsController {
           name: image.fileName + "." + image.extname,
         });
       }
-
-      product.save();
+      await product.save();
+     
       if (!image) {
         return;
       }
@@ -168,6 +168,7 @@ export default class ProductsController {
       }
 
       if (product.name) {
+        console.log(product)
         return "Product created";
       } else {
       }
