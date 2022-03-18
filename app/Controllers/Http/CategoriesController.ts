@@ -18,8 +18,10 @@ export default class CategoriesController {
    *           message: [{ lista com Categorias }]
    */
   public async menu({}: HttpContextContract) {
-    //  const categories = await Category.all()
+    const allCategories = await Category.all();
+    console.log(allCategories);
     const categories = [
+      
       {
         title: "Shop",
         megaMenu: true,
@@ -61,6 +63,7 @@ export default class CategoriesController {
               },
             ],
           },
+          
           {
             title: "NAIL ELECTRONICS",
             type: "sub",

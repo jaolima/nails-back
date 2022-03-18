@@ -1,4 +1,4 @@
-@hostname = localhost
+@hostname = 65.108.217.99
 @port = 3333
 @host = {{hostname}}:{{port}}
 @contentType = application/json
@@ -17,9 +17,9 @@ POST http://{{host}}/users HTTP/1.1
 Content-Type: {{contentType}}
 
 {
-    "name": "John",
-    "email": "michael@michael.com",
-    "password": "1234567",
+    "name": "Lucas",
+    "email": "lucaslmmanoel5@gmail.com",
+    "password": "30055003",
     "uriImage": "teste.com"
 }
 
@@ -42,8 +42,8 @@ POST http://{{host}}/sessions HTTP/1.1
 Content-Type: {{contentType}}
 
 {
-    "email": "michaelJackson@michael.com",
-    "password": "12345678"
+    "email": "lucaslmmanoel5@gmail.com",
+    "password": "30055003"
 }
 
 
