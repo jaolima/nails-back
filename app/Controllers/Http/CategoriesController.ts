@@ -2,6 +2,7 @@ import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Category from "App/Models/Category";
 // import Categories from "Database/migrations/0000000000006_categories";
 import Database from "@ioc:Adonis/Lucid/Database";
+import { schema } from "@ioc:Adonis/Core/Validator";
 
 export default class CategoriesController {
   /**
@@ -21,7 +22,6 @@ export default class CategoriesController {
     const allCategories = await Category.all();
     console.log(allCategories);
     const categories = [
-      
       {
         title: "Shop",
         megaMenu: true,
@@ -63,7 +63,7 @@ export default class CategoriesController {
               },
             ],
           },
-          
+
           {
             title: "NAIL ELECTRONICS",
             type: "sub",
@@ -232,8 +232,9 @@ export default class CategoriesController {
     return categories;
   }
 
-  public async store({ request }: HttpContextContract) {
-    /**
+  public async store({ request, response }: HttpContextContract) {
+    try {
+      /**
   * @swagger
   * /categories:
   *   post:
@@ -261,11 +262,22 @@ export default class CategoriesController {
   *         example:
   *           message: { info category}
   */
-    const category = new Category();
-    category.name = request.input("name");
-    category.subCategory = request.input("idSubCategory") || [];
-    category.save();
-    return category;
+      const validation = schema.create({
+        name: schema.string({ trim: true }),
+        // subCategory: schema.number(),
+      });
+      const payload = await request.validate({ schema: validation });
+
+      console.log(payload)
+
+      const category = new Category();
+      category.name = request.input("name");
+      // category.subCategory = request.input("idSubCategory") || [];
+      category.save();
+      return category;
+    } catch (error) {
+      response.badRequest(error.messages);
+    }
   }
 
   public async index({}: HttpContextContract) {
