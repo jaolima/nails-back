@@ -317,5 +317,12 @@ export default class CategoriesController {
 
   public async update({}: HttpContextContract) {}
 
-  public async destroy({}: HttpContextContract) {}
+  public async destroy({ params }: HttpContextContract) {
+    // const post = await Category.findOrFail()
+    var category = Database.from("categories")
+    .select("*")
+    .where("id", parseInt(params.id))
+    await category.delete()
+    return category
+  }
 }
