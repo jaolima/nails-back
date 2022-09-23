@@ -8,6 +8,7 @@ import Env from "@ioc:Adonis/Core/Env";
 const { v4: uuidv4 } = require("uuid");
 // const Helpers = use('Helpers')
 export default class ProductsController {
+  
   public async index({}: HttpContextContract) {
     /**
      * @swagger
@@ -43,6 +44,7 @@ export default class ProductsController {
     const products = await Products.query().where("top_products", "true");
     return products;
   }
+
   public async productsByCategory({ params }: HttpContextContract) {
     /**
      * @swagger
@@ -196,7 +198,11 @@ export default class ProductsController {
 
   public async create({}: HttpContextContract) {}
 
-  public async show({}: HttpContextContract) {}
+  public async show({ params }: HttpContextContract) {
+    const { id } = params
+    
+    return await Products.find(id);
+  }
 
   public async edit({}: HttpContextContract) {}
 
