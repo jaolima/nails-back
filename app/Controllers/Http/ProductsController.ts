@@ -231,7 +231,7 @@ export default class ProductsController {
   
     await product.save()
   
-    return product
+    return "Product has been updated"
   }
 
   public async destroy({}: HttpContextContract) {}
