@@ -198,15 +198,41 @@ export default class ProductsController {
 
   public async create({}: HttpContextContract) {}
 
-  public async show({ params }: HttpContextContract) {
-    const { id } = params
-    
-    return await Products.find(id);
+  public  async show ({ params }) {
+    const product = await Products.findOrFail(params.id)
+  
+    // await product.load('images')
+  
+    return product
   }
+  
 
   public async edit({}: HttpContextContract) {}
 
-  public async update({}: HttpContextContract) {}
+  public async update({ params, request, response }: HttpContextContract) {
+    const product = await Product.findOrFail(params.id)
+
+    const data = request.only([
+      'price',
+      'barcode',
+      'size',
+      'type',
+      'qtd',
+      'description',
+      'color',
+      'alias_color',
+      'name',
+      'top_products',
+      'discount'
+    ])
+    console.log(data)
+    
+    product.merge(data)
+  
+    await product.save()
+  
+    return product
+  }
 
   public async destroy({}: HttpContextContract) {}
 }
